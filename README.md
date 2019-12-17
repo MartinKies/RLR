@@ -5,9 +5,10 @@ This R package has the goal to bring some known - and newly developed - Machine 
 
 Current developement focuses on examining and analysing different learning algorithms, such as Q-Learning or A3C, in the context of finding best answers to the repeated prisoners dilemma (see the package skranz/StratTourn). This package provides the newly developed features discussed in the dissertation of Martin Kies (to be published). Syntax may change at any time as this repository is in ongoing development - update with precaution!
 
-There are two showcases with which an easy start is possible:
+There are three showcases with which an easy start is possible:
  * Showcase Improved Q-Learning with Gradient Boosting.R shows the standard case if one wants to has a reasonable fast estimate about the stability of a strategy with gradient boosting.
  * Showcase Improved Q-Learning with RNN-LSTM.R is identical, except that it is already shown which parameters have to be changed if one wants to play a tournament. Here, everything is already parameterized so that an RNN with LSTM Cells is trained.
+  * Showcase Showcase Normal Q-Learning with NN.R shows basic Q-Learning and the Syntax if one wants use a Neural Network.
 
 Defining the interface between games and learning algorithms:
 
