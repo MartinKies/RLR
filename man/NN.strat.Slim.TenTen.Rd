@@ -4,8 +4,7 @@
 \alias{NN.strat.Slim.TenTen}
 \title{A strategy to be used after model has been trained}
 \usage{
-NN.strat.Slim.TenTen(obs, i, t, history.see = NULL, net.pointer = 1,
-  ...)
+NN.strat.Slim.TenTen(obs, i, t, history.see = NULL, net.pointer = 1, ...)
 }
 \description{
 A strategy to be used after model has been trained

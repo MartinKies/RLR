@@ -4,13 +4,16 @@
 \alias{Get.Game.Object.PD}
 \title{Get Game Object which fully defines Prisoners Dilemma.}
 \usage{
-Get.Game.Object.PD(encoding.state = "Main.real",
-  encoding.action = NULL, encoding.params = NULL,
+Get.Game.Object.PD(
+  encoding.state = "Main.real",
+  encoding.action = NULL,
+  encoding.params = NULL,
   eval.strategy = Model.strat.Main.real.Exp.Path,
   basic.name.eval.model = "model.strat.global",
   basic.name.eval.model.par = "model.par.strat.global",
-  game.setting = "BattleOfStrategies2013.Baseline",
-  strats = "tit.for.tat")
+  game.setting = "BattleOfStrategiesThesis.Baseline",
+  strats = "tit.for.tat"
+)
 }
 \arguments{
 \item{encoding.state}{Which feature selection should be used to encode the game? Default case is the main encoding of the thesis of Martin Kies, Main.real}
@@ -28,7 +31,7 @@ Get.Game.Object.PD(encoding.state = "Main.real",
 
 \item{basic.name.eval.model.par}{Global name under which the name of the parameter list of the model is to be saved.}
 
-\item{game.setting}{Default settings of the game. By default the setting "BattleOfStrategies2013.Baseline" is used, which is the relevant one for the thesis of Martin Kies. For more information regarding the implemented settings see \code{link{Get.Game.Param.PD}}.}
+\item{game.setting}{Default settings of the game. By default the setting "BattleOfStrategiesThesis.Baseline" is used, which is the relevant one for the thesis of Martin Kies. For more information regarding the implemented settings see \code{link{Get.Game.Param.PD}}.}
 
 \item{strats}{The strategies against which one wants to play. If several strategy names are given, each episode a random strategy is chosen. The code name "self" implements self play.}
 }

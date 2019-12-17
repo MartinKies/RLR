@@ -4,8 +4,17 @@
 \alias{Worker.A3C}
 \title{Defines an Agent based on the A3C-Algorithm}
 \usage{
-Worker.A3C(worker.number, game.state, model.par, algo.par, algo.var.worker,
-  game.object, weights, Worker.Episode, model)
+Worker.A3C(
+  worker.number,
+  game.state,
+  model.par,
+  algo.par,
+  algo.var.worker,
+  game.object,
+  weights,
+  Worker.Episode,
+  model
+)
 }
 \arguments{
 \item{worker.number}{Number to identify the given worker.}

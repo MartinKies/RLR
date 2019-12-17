@@ -4,8 +4,7 @@
 \alias{strat.i}
 \title{A testpool strategy}
 \usage{
-strat.i(obs, i, t, game, loss.conf = 1, con.def = 0, mistrust = 0,
-  ...)
+strat.i(obs, i, t, game, loss.conf = 1, con.def = 0, mistrust = 0, ...)
 }
 \description{
 A testpool strategy

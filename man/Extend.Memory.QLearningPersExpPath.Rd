@@ -4,8 +4,14 @@
 \alias{Extend.Memory.QLearningPersExpPath}
 \title{Extend Memory by specified experiences}
 \usage{
-Extend.Memory.QLearningPersExpPath(algo.var, algo.par = NULL,
-  game.object, memory.type, memory.param = NULL, model.par = NULL)
+Extend.Memory.QLearningPersExpPath(
+  algo.var,
+  algo.par = NULL,
+  game.object,
+  memory.type,
+  memory.param = NULL,
+  model.par = NULL
+)
 }
 \arguments{
 \item{algo.var}{A variable algorithm object, where to be modified variables are saved. Given by \code{Initialise.QLearningPersExpPath()}}

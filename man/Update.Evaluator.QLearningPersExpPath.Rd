@@ -4,9 +4,14 @@
 \alias{Update.Evaluator.QLearningPersExpPath}
 \title{Controlled Copying of Models}
 \usage{
-Update.Evaluator.QLearningPersExpPath(evaluator = evaluator,
-  new.model = NULL, new.model.surp = NULL, new.model.fam = NULL,
-  which.update = "both", model.par)
+Update.Evaluator.QLearningPersExpPath(
+  evaluator = evaluator,
+  new.model = NULL,
+  new.model.surp = NULL,
+  new.model.fam = NULL,
+  which.update = "both",
+  model.par
+)
 }
 \arguments{
 \item{evaluator}{Evaluation consisting of the two models}

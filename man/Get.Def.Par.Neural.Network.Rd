@@ -4,7 +4,7 @@
 \alias{Get.Def.Par.Neural.Network}
 \title{Define default Parameters of the Neural Network Function}
 \usage{
-Get.Def.Par.Neural.Network()
+Get.Def.Par.Neural.Network(setting = NULL)
 }
 \description{
 Returns a List which may be used as \code{model.par} of e.g. the function \code{Setup.QLearning()} with the following parameters:\itemize{
@@ -14,11 +14,13 @@ Returns a List which may be used as \code{model.par} of e.g. the function \code{
 \item \strong{train} - Function which should be used to train/calibrate the Neural Network. Per Default \code{Train.Neural.Network}
 \item \strong{hidden.nodes} - A Vector consisting of the number of Neurons in each hidden layer - e.g. c(25,10) to have two hidden layers with the first layer having 25 Neurons.
 \item \strong{activation.hidden} - A Vector defining the activation functions of the hidden layers, e.g. c(\"relu\",\"relu\"). Has to have the same number of items as \code{hidden.nodes}. Supported are e.g. relu, tanh, sigmoid and linear
-\item \strong{activation.output}. Activiation function of the output layer. Supported are e.g. relu, tanh, sigmoid and linear.
-\item \strong{loss}. Specifies the loss function, e.g. \'mse\'
+\item \strong{activation.output} Activiation function of the output layer. Supported are e.g. relu, tanh, sigmoid and linear.
+\item \strong{dropout} - A Vector consisting of the dropout rate of the hidden layers - e.g. c(0.2,0.2) if one wants both hidden layers to have a dropout of 20 Percent.
+\item \strong{input.dropout} - Dropout of the input layer.
+\item \strong{loss} Specifies the loss function, e.g. \'mse\'
 \item \strong{optimizer}. Specifies the used optimizer. By Default Adam Optimization is used with a Learning rate of 0.001.
-\item \strong{epochs}. How many epochs should the Neural Network be trained?
-\item \strong{batch.size}. Batch Size of Neural Network.
-\item \strong{verbose}. Should the Neural Network give an output? 0 for no output, 1 for output for each epoch, 2 for aggregate output every other epoch.
+\item \strong{epochs} How many epochs should the Neural Network be trained?
+\item \strong{batch.size} Batch Size of Neural Network.
+\item \strong{verbose} Should the Neural Network give an output? 0 for no output, 1 for output for each epoch, 2 for aggregate output every other epoch.
 }
 }

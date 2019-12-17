@@ -4,8 +4,7 @@
 \alias{Act.A3C}
 \title{Determines which action the algorithm takes}
 \usage{
-Act.A3C(state, model, model.par, algo.par, game.object, worker.number,
-  epsilon)
+Act.A3C(state, model, model.par, algo.par, game.object, worker.number, epsilon)
 }
 \arguments{
 \item{state}{Encoded game state as given by \code{state.2.array}}

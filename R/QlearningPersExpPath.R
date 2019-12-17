@@ -19,6 +19,8 @@ Get.Def.Par.QLearningPersExpPath <- function(setting="ThesisOpt.XGB"){
     algo.params <- Get.Def.Par.QLearningPersExpPath.Legacy.ThesisOpt.RNN()
   } else if (setting=="Legacy.v.0.1.6"){
     algo.params <- Get.Def.Par.QLearningPersExpPath.Legacy.v.0.1.6()
+  } else if (setting=="QLearning.Basic"){
+    algo.params <- Get.Def.Par.QLearningPersExpPath.QLearning.Basic()
   } else {
     stop("Can't generate default parameters algo.par for QLearningPersExpPath due to misspecified setting.")
   }

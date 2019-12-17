@@ -4,8 +4,7 @@
 \alias{Advantage.function}
 \title{Calculates N-Step Returns or weighted Temporal Difference Errors}
 \usage{
-Advantage.function(state, model, model.par, algo.par, game.object, queue,
-  done)
+Advantage.function(state, model, model.par, algo.par, game.object, queue, done)
 }
 \arguments{
 \item{state}{Actual game state as returned by \code{State.Transition.<NAME>}.}

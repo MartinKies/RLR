@@ -4,8 +4,16 @@
 \alias{strat.d}
 \title{A testpool strategy}
 \usage{
-strat.d(obs, i, t, game, Cooperation.Count = 0,
-  Consecutive.Cooperations = 0, Consecutive.Defections = 0, ...)
+strat.d(
+  obs,
+  i,
+  t,
+  game,
+  Cooperation.Count = 0,
+  Consecutive.Cooperations = 0,
+  Consecutive.Defections = 0,
+  ...
+)
 }
 \description{
 A testpool strategy

@@ -4,8 +4,13 @@
 \alias{Initialise.QLearningPersExpPath}
 \title{Set changeable model variables}
 \usage{
-Initialise.QLearningPersExpPath(game.object = NULL, algo.par,
-  memory.init = NULL, memory.param = NULL, model.par = NULL)
+Initialise.QLearningPersExpPath(
+  game.object = NULL,
+  algo.par,
+  memory.init = NULL,
+  memory.param = NULL,
+  model.par = NULL
+)
 }
 \arguments{
 \item{game.object}{A Game Object as defined by \code{Get.Game.Object.<Name>}. Necessary in the case of memory intitialisation.}
@@ -19,8 +24,6 @@ Initialise.QLearningPersExpPath(game.object = NULL, algo.par,
 If combinations of different memories are needed, one can use the function \code{Extend.Memory.QLearningPersExpPath()}}
 
 \item{memory.param}{Parameters necessary for the chosen \code{memory.init}.}
-
-\item{model.par}{Parameters of QLearning specification. Have to be specified and should be identical to the model.par as given to \code{Setup.QLearningPersExpPath()}.}
 
 \item{model.par}{Parameters of model i.e. Neural Network. Currently only used for RNN.}
 }

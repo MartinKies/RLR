@@ -4,10 +4,21 @@
 \alias{Act.QLearningPersExpPath}
 \title{Determines which action to take}
 \usage{
-Act.QLearningPersExpPath(state, model, model.surp = NULL,
-  model.fam = NULL, model.par, model.par.surp = NULL,
-  model.par.fam = NULL, algo.par, algo.var, game.object,
-  eval.only = FALSE, best.guess.episode = FALSE, block.type = NULL)
+Act.QLearningPersExpPath(
+  state,
+  model,
+  model.surp = NULL,
+  model.fam = NULL,
+  model.par,
+  model.par.surp = NULL,
+  model.par.fam = NULL,
+  algo.par,
+  algo.var,
+  game.object,
+  eval.only = FALSE,
+  best.guess.episode = FALSE,
+  block.type = NULL
+)
 }
 \description{
 Determines which action to take

@@ -69,7 +69,6 @@ Get.Def.Par.A3C <- function(){
 #'
 #' @param algo.par A list as given by \code{Get.Def.Par.A3C}.
 #'@export
-
 Initialise.A3C <- function (algo.par){
   
   algo.var.Master <- replicate(algo.par$N.Worker,list(), simplify = "array")
@@ -95,7 +94,6 @@ Initialise.A3C <- function (algo.par){
 #' @param game.object A Game Object (list) as defined by \code{Get.Game.Object.<NAME>}.
 #' @param episodes.max Specifies how many episodes should be played in total.  
 #'@export
-
 Train.A3c <- function(model.par, algo.par, algo.var, game.object, episodes.max){
   
   restore.point( "Train.A3C")
@@ -288,7 +286,6 @@ Train.A3c <- function(model.par, algo.par, algo.var, game.object, episodes.max){
 #' @param worker.number A number to identify the worker.   
 #' @param epsilon Current Value of epsilon.
 #'@export
-
 Act.A3C <- function(state, model, model.par,algo.par, game.object,worker.number,epsilon){
   
   game.par <- game.object$game.par(game.object)
@@ -324,7 +321,6 @@ Act.A3C <- function(state, model, model.par,algo.par, game.object,worker.number,
 #' @param queue Game history of the last n rounds given by \code{Convert.2.train}.
 #' @param done Boolean specifiying wether actual episode is ended. Determines if a Bootstrap Value has to be calculated.
 #'@export
-
 Advantage.function <- function(state, model, model.par, algo.par, game.object, queue,done){
   
   if(done == FALSE){
@@ -560,7 +556,6 @@ Get.Def.Par.Neural.Network.A3C <- function(){
 #' \item \strong{clip.norm} The global norm of the gradients at which they are clipped. Prevents really large weight updates.
 #' }
 #'@export
-
 Get.Def.Par.Neural.Network.A3C.LSTM <- function(){
   
   name <- "A3C.Neural.Network.LSTM"

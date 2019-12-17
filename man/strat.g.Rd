@@ -4,8 +4,7 @@
 \alias{strat.g}
 \title{A testpool strategy}
 \usage{
-strat.g(obs, i, t, game, reset.state = TRUE, consec.defections = 0,
-  ...)
+strat.g(obs, i, t, game, reset.state = TRUE, consec.defections = 0, ...)
 }
 \description{
 A testpool strategy

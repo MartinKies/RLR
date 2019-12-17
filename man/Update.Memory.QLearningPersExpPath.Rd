@@ -4,8 +4,13 @@
 \alias{Update.Memory.QLearningPersExpPath}
 \title{Add historic Q-Values and Curiosity to memory}
 \usage{
-Update.Memory.QLearningPersExpPath(algo.var, new.mem, game.object,
-  algo.par, best.effort = NULL)
+Update.Memory.QLearningPersExpPath(
+  algo.var,
+  new.mem,
+  game.object,
+  algo.par,
+  best.effort = NULL
+)
 }
 \description{
 Add historic Q-Values and Curiosity to memory

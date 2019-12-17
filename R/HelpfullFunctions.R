@@ -85,7 +85,8 @@ smooth.triangle <- function(input,smooth=5, show="value"){
   return(smoothed)
 }
 
-#PID controller, which generates ouptput based on the error
+#'PID controller, which generates ouptput based on the error
+#'
 #' @param err.vec A vector with the error terms (discrepancies of the result and the value)
 #' @param Kp Factor measuring how strong we want to turn based on proportial gain
 #' @param Ki Factor measuring how strong we want to turn based on integral gain

@@ -4,8 +4,15 @@
 \alias{Replay.QLearningPersExpPath}
 \title{Train model of Q learning}
 \usage{
-Replay.QLearningPersExpPath(evaluator, model.par, model.par.surp = NULL,
-  model.par.fam = NULL, algo.par, algo.var, game.object)
+Replay.QLearningPersExpPath(
+  evaluator,
+  model.par,
+  model.par.surp = NULL,
+  model.par.fam = NULL,
+  algo.par,
+  algo.var,
+  game.object
+)
 }
 \arguments{
 \item{model.par.surp}{If \code{NULL}, no suprise model is generated/updated.}

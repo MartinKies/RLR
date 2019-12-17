@@ -4,10 +4,20 @@
 \alias{Train.QLearningPersExpPath}
 \title{Train a model based on Q-Learning}
 \usage{
-Train.QLearningPersExpPath(evaluator, model.par, algo.par, algo.var,
-  model.par.surp = NULL, model.par.fam = NULL, game.object, blocks,
-  eval.only = FALSE, eval.each.round = NULL, start.w.training = TRUE,
-  out.file = NULL)
+Train.QLearningPersExpPath(
+  evaluator,
+  model.par,
+  algo.par,
+  algo.var,
+  model.par.surp = NULL,
+  model.par.fam = NULL,
+  game.object,
+  blocks,
+  eval.only = FALSE,
+  eval.each.round = NULL,
+  start.w.training = TRUE,
+  out.file = NULL
+)
 }
 \description{
 Train a model based on Q-Learning

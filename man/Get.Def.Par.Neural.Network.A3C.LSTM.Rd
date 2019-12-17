@@ -7,5 +7,5 @@
 Get.Def.Par.Neural.Network.A3C.LSTM()
 }
 \description{
-Get Default Parameters of the LSTM Neural Network for the A3C implementation.
+
 }

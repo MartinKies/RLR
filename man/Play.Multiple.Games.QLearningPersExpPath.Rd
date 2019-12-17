@@ -4,10 +4,20 @@
 \alias{Play.Multiple.Games.QLearningPersExpPath}
 \title{Train multiple games}
 \usage{
-Play.Multiple.Games.QLearningPersExpPath(episodes, model,
-  model.surp = NULL, model.fam = NULL, model.par,
-  model.par.surp = NULL, model.par.fam = NULL, algo.par, algo.var,
-  game.object, type = "best", eval.only = TRUE)
+Play.Multiple.Games.QLearningPersExpPath(
+  episodes,
+  model,
+  model.surp = NULL,
+  model.fam = NULL,
+  model.par,
+  model.par.surp = NULL,
+  model.par.fam = NULL,
+  algo.par,
+  algo.var,
+  game.object,
+  type = "best",
+  eval.only = TRUE
+)
 }
 \description{
 Train multiple games

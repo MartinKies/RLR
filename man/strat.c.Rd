@@ -4,8 +4,17 @@
 \alias{strat.c}
 \title{A testpool strategy}
 \usage{
-strat.c(obs, i, t, game, P_i = 0.5, P_a = 0.5, threshold = 0.25,
-  Fratio = 0.4, ...)
+strat.c(
+  obs,
+  i,
+  t,
+  game,
+  P_i = 0.5,
+  P_a = 0.5,
+  threshold = 0.25,
+  Fratio = 0.4,
+  ...
+)
 }
 \description{
 A testpool strategy

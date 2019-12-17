@@ -5,12 +5,12 @@
 #' Returns a list with the parameters.
 #' 
 #' @param setting Here, one defines the setting which should be used as a default. The following settings are currently implemented: \itemize{
-#'  \item "BattleOfStrategies2013.Baseline" - The setting as defined in the thesis of Martin Kies. 15% Prob. of mistaking a cooperation as a defection. \eqn{delta} 0.95. T.max 60 for numerical purposes as default.  
+#'  \item "BattleOfStrategiesThesis.Baseline" - The setting as defined in the thesis of Martin Kies. 15% Prob. of mistaking a cooperation as a defection. \eqn{delta} 0.95. T.max 60 for numerical purposes as default.  
 #'  \item "BattleOfStrategies2019" - The setting as defined the seminar "Fortgeschrittene Analyse von Kooperation mit Spieltheorie und Simulation aka Battle of Strategies" of winter term 2019/2020. 25% Prob. of mistaking an observation in either direction. \eqn{delta} 0.985. T.max 60 for numerical purposes as default.  
 #' }
 #' @param strats Names of strategies which are to be optimized against. If several strategies are given it is random against which strategy the game is played with each episode. Playing against itself is indicated by "self". Note that this function sets the strategy to NA if "self" is wished and the respective encoding strategy has to be manually filled in.
 #' @export
-Get.Game.Param.PD <- function(setting="BattleOfStrategies2013.Baseline", strats="tit.for.tat"){
+Get.Game.Param.PD <- function(setting="BattleOfStrategiesThesis.Baseline", strats="tit.for.tat"){
   other.strategies <- lapply(strats,FUN=function(x){
     if(x=="self"||!exists(x)){
       return(NA)
@@ -21,7 +21,7 @@ Get.Game.Param.PD <- function(setting="BattleOfStrategies2013.Baseline", strats=
   names(other.strategies) <- strats
   other.strategies <- list(other.strategies=other.strategies)
   
-  if(is.null(setting)||setting=="BattleOfStrategies2013.Baseline"){
+  if(is.null(setting)||setting=="BattleOfStrategiesThesis.Baseline"){
     game.pars <- Get.Game.Param.PD.Legacy.BattleOfStrategies2013.Baseline()
   } else if (setting=="BattleOfStrategies2019"){
     game.pars <- Get.Game.Param.PD.Legacy.BattleOfStrategies2019()
@@ -1686,10 +1686,10 @@ Encode.Game.States.PD <- function(game.object, game.states, expand=TRUE){
 #' @param eval.strategy The name of the strategy used if one wants to evaluate the strategy with the package StratTourn or if self-play is used (i.e. if set to play a tournament with the strategy itself being a viable participant). By default "Model.strat.Main.real.Exp.Path" is used, which is designed to work with the encoding "Main.real".
 #' @param basic.name.eval.model Global name under which the name of the model is to be saved.
 #' @param basic.name.eval.model.par Global name under which the name of the parameter list of the model is to be saved.
-#' @param game.setting Default settings of the game. By default the setting "BattleOfStrategies2013.Baseline" is used, which is the relevant one for the thesis of Martin Kies. For more information regarding the implemented settings see \code{link{Get.Game.Param.PD}}.
+#' @param game.setting Default settings of the game. By default the setting "BattleOfStrategiesThesis.Baseline" is used, which is the relevant one for the thesis of Martin Kies. For more information regarding the implemented settings see \code{link{Get.Game.Param.PD}}.
 #' @param strats The strategies against which one wants to play. If several strategy names are given, each episode a random strategy is chosen. The code name "self" implements self play.
 #' @export
-Get.Game.Object.PD <- function(encoding.state="Main.real", encoding.action=NULL, encoding.params=NULL, eval.strategy=Model.strat.Main.real.Exp.Path, basic.name.eval.model="model.strat.global", basic.name.eval.model.par="model.par.strat.global", game.setting="BattleOfStrategies2013.Baseline", strats="tit.for.tat"){
+Get.Game.Object.PD <- function(encoding.state="Main.real", encoding.action=NULL, encoding.params=NULL, eval.strategy=Model.strat.Main.real.Exp.Path, basic.name.eval.model="model.strat.global", basic.name.eval.model.par="model.par.strat.global", game.setting="BattleOfStrategiesThesis.Baseline", strats="tit.for.tat"){
   name <- "Prisoners Dilemma"
   supports <- c("memory.self.play", "memory.random.play","discounted.reward")
 
@@ -2518,8 +2518,11 @@ Model.strat.Main.real.Exp.Path = function(obs,i,t,history.see=NULL,history.real=
   arr <- c(me.C-me.D, me.real.C-me.real.D, other.C-other.D, me.C.fin-me.D.fin, me.real.C.fin-me.real.D.fin, other.C.fin-other.D.fin, rounds, av.other.def,sum.other.def, av.me.def, av.me.real.def, sum.me.def, sum.me.real.def, prev.val.as.seen.abs, diff, quot)
 
   arr <- t(as.matrix(arr))
-    action <- which.is.max(eval(as.name(game.object$basic.name.eval.model.par))$predict(eval(as.name(game.object$basic.name.eval.model)), eval(as.name(game.object$basic.name.eval.model.par)), arr))
-
+  action <- which.is.max(eval(as.name(game.object$basic.name.eval.model.par))$predict(eval(as.name(game.object$basic.name.eval.model)), eval(as.name(game.object$basic.name.eval.model.par)), arr))
+  if(!is.null(eval(as.name(game.object$basic.name.eval.model.par))$name)&&eval(as.name(game.object$basic.name.eval.model.par))$name=="Neural.Network.Basic"){
+    k_clear_session()
+  }
+  
   if(action==1){
     a <- "C"
   } else {
@@ -2755,6 +2758,83 @@ Model.strat.XGBoost.Main.real.Exp.Path.short20 = function(obs,i,t,history.see=NU
     a <- "D"
   }
 
+  return(nlist(a, history.see,history.real,me.real=a))
+}
+
+#' @export
+Model.strat.NN.Harper = function(obs,i,t,history.see=NULL,history.real=NULL,me.real=NULL,...) {
+  #debug.store("Model.strat.NN.Harper", i, t)  # Store each call for each player
+  #debug.restore("Model.strat.NN.Harper", i = 1, t = 1)  # Restore call for player i in period t
+  j = 3-i
+  
+  if(is.null(history.see)){
+    history.see <- data.frame(me=rep(0,game.object$game.pars$T.max), other=rep(0,game.object$game.pars$T.max))
+  }
+  if(is.null(history.real)){
+    history.real <- data.frame(me=rep(0,game.object$game.pars$T.max), other=rep(NA,game.object$game.pars$T.max))
+  }
+  
+  
+  if(t>1){
+    history.see[t-1,1] <- obs$a[i]
+    history.see[t-1,2] <- obs$a[j]
+  }
+  if(t>1){
+    history.real[t-1,1] <- me.real
+  }
+  game.state <- list()
+  game.state$history.see <- history.see
+  game.state$history.real <- history.real
+  game.state$round <- t
+  
+  me.C <- c((!is.na(game.state$history.see[,1])&game.state$history.see[,1]=="C"),rep(0,game.object$game.pars$T.max-nrow(game.state$history.see)))
+  me.D <- c((!is.na(game.state$history.see[,1])&game.state$history.see[,1]=="D"),rep(0,game.object$game.pars$T.max-nrow(game.state$history.see)))
+  me.real.C <- c((!is.na(game.state$history.real[,1])&game.state$history.real[,1]=="C"),rep(0,game.object$game.pars$T.max-nrow(game.state$history.real)))
+  me.real.D <- c((!is.na(game.state$history.real[,1])&game.state$history.real[,1]=="D"),rep(0,game.object$game.pars$T.max-nrow(game.state$history.see)))
+  other.C <- c((!is.na(game.state$history.see[,2])&game.state$history.see[,2]=="C"),rep(0,game.object$game.pars$T.max-nrow(game.state$history.see)))
+  other.D <- c((!is.na(game.state$history.see[,2])&game.state$history.see[,2]=="D"),rep(0,game.object$game.pars$T.max-nrow(game.state$history.see)))
+  
+  rounds <- game.state$round
+  
+  if(game.state$round > 1){
+    sum.other.def <- sum(game.state$history.see[1:(game.state$round-1),2]=="D")
+  } else {
+    sum.other.def <- 0
+  }
+  if(game.state$round > 1){
+    sum.me.def <- sum(game.state$history.see[1:(game.state$round-1),1]=="D")
+  } else {
+    sum.me.def <- 0
+  }
+  
+  if(game.state$round==1){
+    me.C.fin <- rep(0,game.object$game.pars$T.max)
+    me.D.fin <- rep(0,game.object$game.pars$T.max)
+    other.C.fin <- rep(0,game.object$game.pars$T.max)
+    other.D.fin <- rep(0,game.object$game.pars$T.max)
+  } else {
+    me.C.fin <- c(me.C[(game.state$round-1):1],rep(0,game.object$game.pars$T.max-game.state$round+1))
+    me.D.fin <- c(me.D[(game.state$round-1):1],rep(0,game.object$game.pars$T.max-game.state$round+1))
+    other.C.fin <- c(other.C[(game.state$round-1):1],rep(0,game.object$game.pars$T.max-game.state$round+1))
+    other.D.fin <- c(other.D[(game.state$round-1):1],rep(0,game.object$game.pars$T.max-game.state$round+1))
+  }
+  
+  arr <- c((me.C-me.D)[1:2], (other.C-other.D)[1:2], (me.C.fin-me.D.fin)[1:2], (other.C.fin-other.D.fin)[1:2], rounds, sum.other.def, sum.me.def)
+  
+  arr <- t(as.matrix(arr))
+  
+  action <- which.is.max(eval(as.name(game.object$basic.name.eval.model.par))$predict(eval(as.name(game.object$basic.name.eval.model)), eval(as.name(game.object$basic.name.eval.model.par)), arr))
+  
+  if(!is.null(eval(as.name(game.object$basic.name.eval.model.par))$name)&&eval(as.name(game.object$basic.name.eval.model.par))$name=="Neural.Network.Basic"){
+    k_clear_session()
+  }
+  
+  if(action==1){
+    a <- "C"
+  } else {
+    a <- "D"
+  }
+  
   return(nlist(a, history.see,history.real,me.real=a))
 }
 

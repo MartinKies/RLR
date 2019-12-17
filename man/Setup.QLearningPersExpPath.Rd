@@ -4,8 +4,13 @@
 \alias{Setup.QLearningPersExpPath}
 \title{Sets up a model based on model parameters}
 \usage{
-Setup.QLearningPersExpPath(game.object, algo.par = NULL, model.par,
-  model.par.surp = NULL, model.par.fam = NULL)
+Setup.QLearningPersExpPath(
+  game.object,
+  algo.par = NULL,
+  model.par,
+  model.par.surp = NULL,
+  model.par.fam = NULL
+)
 }
 \arguments{
 \item{game.object}{Game Object as defined by \code{Get.Game.Object.<NAME>}.}

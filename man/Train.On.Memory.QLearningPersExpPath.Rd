@@ -4,10 +4,20 @@
 \alias{Train.On.Memory.QLearningPersExpPath}
 \title{Trains model based on memory}
 \usage{
-Train.On.Memory.QLearningPersExpPath(model, model.surp = NULL,
-  model.fam = NULL, model.par, model.par.surp = NULL,
-  model.par.fam = NULL, algo.var, algo.par, game.object, type = "init",
-  mem.replay = NULL, ...)
+Train.On.Memory.QLearningPersExpPath(
+  model,
+  model.surp = NULL,
+  model.fam = NULL,
+  model.par,
+  model.par.surp = NULL,
+  model.par.fam = NULL,
+  algo.var,
+  algo.par,
+  game.object,
+  type = "init",
+  mem.replay = NULL,
+  ...
+)
 }
 \arguments{
 \item{model.par}{Model parameters for main model}

@@ -69,13 +69,13 @@ Calc.Rho <- function(phi.table,phi){
 #' deprecated
 #' @export
 Calc.R.phi <- function(phi.table, phi, beta, phi.cont.digits=1, N.type="naive"){
-  rho <- Calc.Rho(phi.table=phi.table,phi=phi,beta=beta)
+  rho <- Calc.Rho(phi.table=phi.table,phi=phi)
   if(N.type=="naive"){
     t <- sum(phi.table[[1]]$count)
     return(t*rho)
   } else {
     phi.table.next <- Update.Phi.Table(phi.table,phi,phi.cont.digits=phi.cont.digits)
-    rho.next <- Calc.Rho(phi.table=phi.table.next,phi=phi,beta=beta)
+    rho.next <- Calc.Rho(phi.table=phi.table.next,phi=phi)
     N.phi <- rho*(1-rho.next)/(rho.next-rho)
     R.phi <- beta/sqrt(N.phi)
     return(R.phi)

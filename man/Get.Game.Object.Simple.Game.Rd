@@ -4,8 +4,7 @@
 \alias{Get.Game.Object.Simple.Game}
 \title{Get Game Object which fully defines simple game.}
 \usage{
-Get.Game.Object.Simple.Game(encoding.state = NULL,
-  encoding.action = NULL)
+Get.Game.Object.Simple.Game(encoding.state = NULL, encoding.action = NULL)
 }
 \arguments{
 \item{encoding.state}{Which method should be used to encode the game? Currently supported:

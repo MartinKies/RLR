@@ -9,15 +9,17 @@
 #' \item \strong{train} - Function which should be used to train/calibrate the Neural Network. Per Default \code{Train.Neural.Network}
 #' \item \strong{hidden.nodes} - A Vector consisting of the number of Neurons in each hidden layer - e.g. c(25,10) to have two hidden layers with the first layer having 25 Neurons.
 #' \item \strong{activation.hidden} - A Vector defining the activation functions of the hidden layers, e.g. c(\"relu\",\"relu\"). Has to have the same number of items as \code{hidden.nodes}. Supported are e.g. relu, tanh, sigmoid and linear
-#' \item \strong{activation.output}. Activiation function of the output layer. Supported are e.g. relu, tanh, sigmoid and linear.
-#' \item \strong{loss}. Specifies the loss function, e.g. \'mse\'
+#' \item \strong{activation.output} Activiation function of the output layer. Supported are e.g. relu, tanh, sigmoid and linear.
+#' \item \strong{dropout} - A Vector consisting of the dropout rate of the hidden layers - e.g. c(0.2,0.2) if one wants both hidden layers to have a dropout of 20 Percent.
+#' \item \strong{input.dropout} - Dropout of the input layer.
+#' \item \strong{loss} Specifies the loss function, e.g. \'mse\'
 #' \item \strong{optimizer}. Specifies the used optimizer. By Default Adam Optimization is used with a Learning rate of 0.001.
-#' \item \strong{epochs}. How many epochs should the Neural Network be trained?
-#' \item \strong{batch.size}. Batch Size of Neural Network.
-#' \item \strong{verbose}. Should the Neural Network give an output? 0 for no output, 1 for output for each epoch, 2 for aggregate output every other epoch.
+#' \item \strong{epochs} How many epochs should the Neural Network be trained?
+#' \item \strong{batch.size} Batch Size of Neural Network.
+#' \item \strong{verbose} Should the Neural Network give an output? 0 for no output, 1 for output for each epoch, 2 for aggregate output every other epoch.
 #' }
 #' @export
-Get.Def.Par.Neural.Network <- function(){
+Get.Def.Par.Neural.Network <- function(setting=NULL){
   #Identifier
   name <- "Neural.Network.Basic"
 
@@ -26,24 +28,16 @@ Get.Def.Par.Neural.Network <- function(){
   predict <- Predict.Neural.Network
   train <- Train.Neural.Network
 
-  #Struktural Parameters
-  hidden.nodes <- c(10,5)
-  activation.hidden <- c("relu","relu")
-  activation.output <- c("linear")
-  loss <- "mse"
-  optimizer <- optimizer_adam(lr=0.001)
-  single.dimensional <- TRUE #Only one output neuron. Actions are part of Statespace
-  dropout <- c(0.2,0.2) #Dropouts for the hidden layers. 0 deactivates.
-  input.dropout <- c(0.2) #Should there be a input dropout? NULL and 0 deactivates.
+  #Parameters
+  if(is.null(setting)||setting=="ThesisBasic"){
+    model.defs <- Get.Def.Par.NN.Legacy.Thesis.Basic()
+  } else if(setting=="Legacy.v.0.1.6"){
+    model.defs <- Get.Def.Par.NN.Legacy.v.0.1.6()
+  } else {
+    stop("Get.Def.Par.NN has no legal setting.")
+  } 
 
-  #Training parameters
-  epochs <- 50
-  batch.size.train <- 32
-  verbose <- 0
-  enforce.increasing.precision <- TRUE
-  give.up.precision <- 10
-
-  model.def.par <- nlist(name,setup,predict,train,hidden.nodes,activation.hidden,activation.output,loss,optimizer, dropout, input.dropout,epochs, batch.size.train, verbose, enforce.increasing.precision, give.up.precision, single.dimensional)
+  model.def.par <- c(nlist(name,setup,predict,train),model.defs)
 
   return(model.def.par)
 }
@@ -137,6 +131,8 @@ Predict.Neural.Network <- function(model, model.par, state, action=NULL){
       res <- unlist(long.l)
     }
   }
+  k_clear_session()
+  
   return(res)
 }
 

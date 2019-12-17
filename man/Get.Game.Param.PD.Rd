@@ -4,12 +4,14 @@
 \alias{Get.Game.Param.PD}
 \title{Defines the game environment of the IPD}
 \usage{
-Get.Game.Param.PD(setting = "BattleOfStrategies2013.Baseline",
-  strats = "tit.for.tat")
+Get.Game.Param.PD(
+  setting = "BattleOfStrategiesThesis.Baseline",
+  strats = "tit.for.tat"
+)
 }
 \arguments{
 \item{setting}{Here, one defines the setting which should be used as a default. The following settings are currently implemented: \itemize{
- \item "BattleOfStrategies2013.Baseline" - The setting as defined in the thesis of Martin Kies. 15% Prob. of mistaking a cooperation as a defection. \eqn{delta} 0.95. T.max 60 for numerical purposes as default.  
+ \item "BattleOfStrategiesThesis.Baseline" - The setting as defined in the thesis of Martin Kies. 15% Prob. of mistaking a cooperation as a defection. \eqn{delta} 0.95. T.max 60 for numerical purposes as default.  
  \item "BattleOfStrategies2019" - The setting as defined the seminar "Fortgeschrittene Analyse von Kooperation mit Spieltheorie und Simulation aka Battle of Strategies" of winter term 2019/2020. 25% Prob. of mistaking an observation in either direction. \eqn{delta} 0.985. T.max 60 for numerical purposes as default.  
 }}
 

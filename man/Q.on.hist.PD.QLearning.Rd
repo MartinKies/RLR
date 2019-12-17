@@ -4,8 +4,14 @@
 \alias{Q.on.hist.PD.QLearning}
 \title{Q-values based on history of IPD}
 \usage{
-Q.on.hist.PD.QLearning(model, model.par, game.object, hist.me, hist.other,
-  hist.real.me = "not given")
+Q.on.hist.PD.QLearning(
+  model,
+  model.par,
+  game.object,
+  hist.me,
+  hist.other,
+  hist.real.me = "not given"
+)
 }
 \description{
 May become deprecated if changes in IPD are made. Just used for easier analysis.
